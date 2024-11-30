@@ -27,7 +27,7 @@ st.dataframe(df.head())
 
 # Tải dữ liệu tự động từ Google Sheets
 try:
-    df = load_data_from_google_sheets()
+    df = load_data()
     st.write("### Dữ liệu từ Google Sheets:")
     st.dataframe(df.head())  # Hiển thị dữ liệu
 except Exception as e:
