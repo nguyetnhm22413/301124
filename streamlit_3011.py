@@ -118,7 +118,91 @@ try:
     days_for_shipment_scheduled = st.sidebar.number_input("Days for Shipment (Scheduled)", min_value=1, max_value=30, value=5)
     sales_per_customer = st.sidebar.number_input("Sales per Customer", min_value=0, max_value=10000, value=500)
     benefit_per_order = st.sidebar.number_input("Benefit per Order", min_value=-500, max_value=1000, value=100)
-
+    delivery_status = st.sidebar.selectbox(
+    "Delivery Status",
+    ['Advance shipping', 'Late delivery', 'Shipping on time', 'Shipping canceled']
+)
+    category_name = st.sidebar.selectbox(
+    "Category Name",
+    [
+        'Sporting Goods', 'Cleats', 'Shop By Sport', "Women's Apparel", 'Electronics',
+        'Boxing & MMA', 'Cardio Equipment', 'Trade-In', "Kids' Golf Clubs",
+        'Hunting & Shooting', 'Baseball & Softball', "Men's Footwear",
+        'Camping & Hiking', 'Consumer Electronics', 'Cameras ', 'Computers',
+        'Basketball', 'Soccer', "Girls' Apparel", 'Accessories', "Women's Clothing",
+        'Crafts', "Men's Clothing", 'Tennis & Racquet', 'Fitness Accessories',
+        'As Seen on TV!', 'Golf Balls', 'Strength Training', "Children's Clothing",
+        'Lacrosse', 'Baby ', 'Fishing', 'Books ', 'DVDs', 'CDs ', 'Garden', 'Hockey',
+        'Pet Supplies', 'Health and Beauty', 'Music', 'Video Games', 'Golf Gloves',
+        'Golf Bags & Carts', 'Golf Shoes', 'Golf Apparel', "Women's Golf Clubs",
+        "Men's Golf Clubs", 'Toys', 'Water Sports', 'Indoor/Outdoor Games'
+    ]
+)
+    customer_state = st.sidebar.selectbox(
+    "Customer State",
+    [
+        'PR', 'CA', 'NY', 'FL', 'MA', 'IL', 'MT', 'PA', 'MI', 'TX', 'DE', 'GA',
+        'MD', 'OH', 'HI', 'NJ', 'WI', 'AZ', 'CO', 'MN', 'NC', 'NM', 'OR', 'SC',
+        'VA', 'UT', 'WA', 'KY', 'WV', 'RI', 'CT', 'LA', 'TN', 'DC', 'ND', 'MO',
+        'IN', 'ID', 'NV', 'KS', 'AR', 'OK', 'AL', 'IA'
+    ]
+)
+    order_country = st.sidebar.selectbox(
+    "Order Country",
+    [
+        'Indonesia', 'India', 'Australia', 'China', 'Japón', 'Corea del Sur',
+        'Singapur', 'Turquía', 'Mongolia', 'Estados Unidos', 'Nigeria',
+        'República Democrática del Congo', 'Senegal', 'Marruecos', 'Alemania',
+        'Francia', 'Países Bajos', 'Reino Unido', 'Guatemala', 'El Salvador',
+        'Panamá', 'República Dominicana', 'Venezuela', 'Colombia', 'Honduras',
+        'Brasil', 'México', 'Uruguay', 'Argentina', 'Cuba', 'Perú', 'Nicaragua',
+        'Ecuador', 'Angola', 'Sudán', 'Somalia', 'Costa de Marfil', 'Egipto',
+        'Italia', 'España', 'Suecia', 'Austria', 'Canada', 'Madagascar',
+        'Argelia', 'Liberia', 'Zambia', 'Níger', 'SudAfrica', 'Mozambique',
+        'Tanzania', 'Ruanda', 'Israel', 'Nueva Zelanda', 'Bangladés',
+        'Tailandia', 'Irak', 'Arabia Saudí', 'Filipinas', 'Kazajistán', 'Irán',
+        'Myanmar (Birmania)', 'Uzbekistán', 'Benín', 'Camerún', 'Kenia', 'Togo',
+        'Ucrania', 'Polonia', 'Portugal', 'Rumania', 'Trinidad y Tobago',
+        'Afganistán', 'Pakistán', 'Vietnam', 'Malasia', 'Finlandia', 'Rusia',
+        'Irlanda', 'Noruega', 'Eslovaquia', 'Bélgica', 'Bolivia', 'Chile',
+        'Jamaica', 'Yemen', 'Ghana', 'Guinea', 'Etiopía', 'Bulgaria',
+        'Kirguistán', 'Georgia', 'Nepal', 'Emiratos Árabes Unidos', 'Camboya',
+        'Uganda', 'Lesoto', 'Lituania', 'Suiza', 'Hungría', 'Dinamarca',
+        'Haití', 'Bielorrusia', 'Croacia', 'Laos', 'Baréin', 'Macedonia',
+        'República Checa', 'Sri Lanka', 'Zimbabue', 'Eritrea', 'Burkina Faso',
+        'Costa Rica', 'Libia', 'Barbados', 'Tayikistán', 'Siria', 'Guadalupe',
+        'Papúa Nueva Guinea', 'Azerbaiyán', 'Turkmenistán', 'Paraguay',
+        'Jordania', 'Hong Kong', 'Martinica', 'Moldavia', 'Qatar', 'Mali',
+        'Albania', 'República del Congo', 'Bosnia y Herzegovina', 'Omán',
+        'Túnez', 'Sierra Leona', 'Yibuti', 'Burundi', 'Montenegro', 'Gabón',
+        'Sudán del Sur', 'Luxemburgo', 'Namibia', 'Mauritania', 'Grecia',
+        'Suazilandia', 'Guyana', 'Guayana Francesa',
+        'República Centroafricana', 'Taiwán', 'Estonia', 'Líbano', 'Chipre',
+        'Guinea-Bissau', 'Surinam', 'Belice', 'Eslovenia', 'República de Gambia',
+        'Botsuana', 'Armenia', 'Guinea Ecuatorial', 'Kuwait', 'Bután', 'Chad',
+        'Serbia', 'Sáhara Occidental'
+    ]
+)
+    order_status = st.sidebar.selectbox(
+    "Order Status",
+    ['COMPLETE', 'PENDING', 'CLOSED', 'PENDING_PAYMENT', 'CANCELED', 
+     'PROCESSING', 'SUSPECTED_FRAUD', 'ON_HOLD', 'PAYMENT_REVIEW']
+)
+    order_region = st.sidebar.selectbox(
+    "Order Region",
+    [
+        'Southeast Asia', 'South Asia', 'Oceania', 'Eastern Asia', 'West Asia',
+        'West of USA ', 'US Center ', 'West Africa', 'Central Africa', 
+        'North Africa', 'Western Europe', 'Northern Europe', 'Central America',
+        'Caribbean', 'South America', 'East Africa', 'Southern Europe', 
+        'East of USA', 'Canada', 'Southern Africa', 'Central Asia', 
+        'Eastern Europe', 'South of  USA '
+    ]
+)
+    market = st.sidebar.selectbox(
+    "Market",
+    ['Pacific Asia', 'USCA', 'Africa', 'Europe', 'LATAM']
+)
     # Mô hình giả lập
     features = ['Days for shipping (real)', 'Days for shipment (scheduled)', 'Sales per customer', 'Benefit per order']
     clf = RandomForestClassifier()
