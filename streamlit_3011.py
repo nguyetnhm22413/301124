@@ -12,30 +12,26 @@ import requests
 from io import StringIO
 import streamlit as st
 
-# Hàm để tải dữ liệu từ Google Drive
-def load_data_from_drive():
-    url = 'https://drive.google.com/file/d/1viztnEQaMsATM7efkgprx87ybFXHNQly/view?usp=drive_link'
-    file_id = url.split('/')[-2]
-    dwn_url = 'https://drive.google.com/uc?export=download&id=' + file_id
-    response = requests.get(dwn_url).text
-    csv_raw = StringIO(response)
-    df = pd.read_csv(csv_raw)
+# Hàm để tải dữ liệu từ Google Sheets
+@st.cache
+def load_data_from_google_sheets():
+    # URL của Google Sheets
+    google_sheets_url = "https://docs.google.com/spreadsheets/d/1A2EE7TrZrjULJkwHqdDXzoY5KOQkWAkcPxYxsC4B6rQ/export?format=csv&gid=135974235"
+    # Đọc dữ liệu từ URL
+    df = pd.read_csv(google_sheets_url)
     return df
 
 # Streamlit App
-st.title("Streamlit App with Google Drive Data")
+st.title("Streamlit App with Google Sheets Data")
 
-# Tải dữ liệu
-if st.button("Tải dữ liệu từ Google Drive"):
-    try:
-        df = load_data_from_drive()
-        st.write("### Dữ liệu tải về:")
-        st.dataframe(df.head())  # Hiển thị dữ liệu
-    except Exception as e:
-        st.error(f"Đã xảy ra lỗi khi tải dữ liệu: {e}")
+# Tải dữ liệu tự động từ Google Sheets
+try:
+    df = load_data_from_google_sheets()
+    st.write("### Dữ liệu từ Google Sheets:")
+    st.dataframe(df.head())  # Hiển thị dữ liệu
+except Exception as e:
+    st.error(f"Đã xảy ra lỗi khi tải dữ liệu: {e}")
 
-import streamlit as st
-import pandas as pd
 
 # Hàm làm sạch dữ liệu
 def clean_data(df):
