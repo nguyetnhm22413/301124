@@ -12,17 +12,18 @@ import requests
 from io import StringIO
 import streamlit as st
 
-# Hàm để tải dữ liệu từ Google Sheets
-@st.cache
-def load_data_from_google_sheets():
-    # URL của Google Sheets
-    google_sheets_url = "https://docs.google.com/spreadsheets/d/1A2EE7TrZrjULJkwHqdDXzoY5KOQkWAkcPxYxsC4B6rQ/export?format=csv&gid=135974235"
-    # Đọc dữ liệu từ URL
-    df = pd.read_csv(google_sheets_url)
-    return df
+# URL của Google Sheets
+google_sheets_url = "https://docs.google.com/spreadsheets/d/1A2EE7TrZrjULJkwHqdDXzoY5KOQkWAkcPxYxsC4B6rQ/export?format=csv&gid=135974235"
 
-# Streamlit App
-st.title("Streamlit App with Google Sheets Data")
+# Đọc dữ liệu từ Google Sheets
+@st.cache
+def load_data():
+    return pd.read_csv(google_sheets_url)
+
+# Load dữ liệu và hiển thị
+df = load_data()
+st.write("### Dataset Preview")
+st.dataframe(df.head())
 
 # Tải dữ liệu tự động từ Google Sheets
 try:
