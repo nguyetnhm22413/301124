@@ -86,17 +86,17 @@ def clean_data(df):
 st.title("Data Cleaning App with Streamlit")
 
 # Tải file dữ liệu
-uploaded_file = st.file_uploader("Tải lên tệp dữ liệu CSV", type=["csv"])
-if uploaded_file:
-    # Đọc dữ liệu
-    df = pd.read_csv(uploaded_file)
-    st.write("### Dữ liệu ban đầu:")
+try:
+    df = load_data()  # Tải dữ liệu tự động từ Google Sheets
+    st.write("### Dữ liệu từ Google Sheets:")
     st.dataframe(df.head())
-
+    
     # Làm sạch dữ liệu
     cleaned_df = clean_data(df)
     st.write("### Dữ liệu sau khi làm sạch:")
     st.dataframe(cleaned_df.head())
+except Exception as e:
+    st.error(f"Đã xảy ra lỗi khi tải dữ liệu: {e}")
 
     # Hiển thị thông tin dữ liệu
     st.write("### Thông tin dữ liệu:")
