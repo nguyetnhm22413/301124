@@ -21,15 +21,10 @@ def load_data():
     return pd.read_csv(google_sheets_url)
 
 # Load dữ liệu và hiển thị
-df = load_data()
-st.write("### Dataset Preview")
-st.dataframe(df.head())
-
-# Tải dữ liệu tự động từ Google Sheets
 try:
     df = load_data()
     st.write("### Dữ liệu từ Google Sheets:")
-    st.dataframe(df.head())  # Hiển thị dữ liệu
+    st.dataframe(df.head())
 except Exception as e:
     st.error(f"Đã xảy ra lỗi khi tải dữ liệu: {e}")
 
