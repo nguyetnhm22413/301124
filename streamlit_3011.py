@@ -105,11 +105,13 @@ try:
     st.pyplot(fig)
 
     st.write("### Correlation Heatmap")
-    numeric_df = cleaned_df.select_dtypes(include=['number'])
+    # Lọc bỏ cột chỉ toàn giá trị null hoặc NaN
+    numeric_df = cleaned_df.select_dtypes(include=['number']).dropna(axis=1, how='all')
     fig, ax = plt.subplots(figsize=(16, 14))
     sns.heatmap(numeric_df.corr(), annot=True, cmap='coolwarm', vmin=-1, vmax=1, fmt=".2f", ax=ax, annot_kws={"size": 8})
     ax.set_title('Correlation Heatmap')
     st.pyplot(fig)
+
 
     # Dự báo với mô hình giả lập
     st.sidebar.header("Nhập thông tin để dự đoán")
