@@ -55,6 +55,8 @@ try:
     cleaned_df = clean_data(df)
     st.write("### Dữ liệu sau khi làm sạch:")
     st.dataframe(cleaned_df.head())
+    # Tạo cột Late_delivery_risk từ dữ liệu
+    cleaned_df['Late_delivery_risk'] = (cleaned_df['Days for shipping (real)'] > cleaned_df['Days for shipment (scheduled)']).astype(int)
 
     # Trực quan hóa: Phân phối Days for Shipping (Real)
     st.write("### Phân phối số ngày giao hàng thực tế")
